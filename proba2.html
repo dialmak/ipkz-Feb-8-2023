@@ -137,7 +137,7 @@ function createList(){
     let myIndex = item.indexOf("_");
     let myDate = item.slice(myIndex + 1);
     myDate = myDate.replace(".csv", " ");
-	  li.innerHTML =`<button class="btn default">` + myDate + `</button>
+	  li.innerHTML =`<button class="btn default" title="Дата">` + myDate + `</button>
     <a href="./files/` + item + `" download><button class="btn success" title="Завантажити файл">Завантажити файл</button></a>
     <a href="./chart.html?` + item + `" target="_blank"><button class="btn info" title="Побудувати графіки">Побудувати графіки</button></a>`;
     list.appendChild(li);
