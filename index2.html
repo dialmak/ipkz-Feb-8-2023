@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Вибір файла для побудови графіка" />
+	<meta name="author" content="Ostapchuk Viktor" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Графік ІПКЗ</title>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script src="./highstock.js"></script>
+	<script src="./data.js"></script>
+	<script src="./no-data-to-display.js"></script>
+	<script src="./exporting.js"></script>
+	<script src="./offline-exporting.js"></script>
+	<script src="./export-data.js"></script>
+	<script src="./debugger.js"></script>
+	<script src="./standalone.js"></script>
+</head>
+
+<body>
+	<noscript>
+		<style type="text/css">
+		#main-content {
+			display: none;
+		}
+		</style>
+		<div id="no-js"> Javascript вимкнено у вашому веб-браузері.
+			<br>Для нормальної роботи необхідно увімкнути javascript.
+			<br /> 
+            <div id="help">
+            Допомога : 
+            <strong>
+            <a target="_blank" href="./help/noscript.html"> як включити javascript в браузері</a>
+            </strong>
+            </div> 
+        </div>
+	</noscript>
+	<div id="main-content">
+		<form enctype="multipart/form-data">
+			<label for="file-uploader" id="feedback" class="custom-file-upload">Вибрати CSV файл реєстратора</label>
+			<input type="file" id="file-uploader" name="file-uploader" class="visually-hidden" accept=".csv" /> 
+        </form>
+		<div id="help"> 
+            Допомога : 
+            <strong>
+            <a target="_blank" href="./help/index.html">довідка</a>
+            </strong> , завантажити 
+            <strong>
+            <a href="./file/proba.csv" download="">приклад</a>
+            </strong> 
+        </div>
+		<br />
+		<div id="container"></div>
+	</div>
+	<script src="./csv.js"></script>
+</body>
+<script>
+const fileUploader = document.getElementById('file-uploader');
+const feedback = document.getElementById('feedback');
+fileUploader.addEventListener('change', (event) => {
+	const file = event.target.files[0];
+	// console.log('file', file);
+	const name = file.name;
+	const size = file.size;
+	// console.log('size', size);
+	let msg = '';
+	// msg = `<span style="color:#3A831C;"> Обрано файл <strong> ${name} </strong> розміром <strong> ${returnFileSize(size)} </strong> </span>`;
+	msg = `<span style="color:#3A831C;"> Обрано файл <strong> ${name} </strong> </span>`;
+	feedback.innerHTML = msg;
+	let reader = new FileReader();
+	reader.readAsText(file);
+	reader.onload = function() {
+		//  console.log(reader.result);
+		let check = reader.result.indexOf('Дата та час');
+		//  console.log('check=' + check);
+		if(check !== 0 && check !== 1) {
+			msg = `<span style="color:#FF0000 ;"> Файл <strong> ${name} </strong> некоректний </span>`;
+			feedback.innerHTML = msg;
+		} else {
+			setChart(reader.result);
+		}
+	};
+	reader.onerror = function() {
+		msg = `<span style="color:#FF0000 ;"> Помилка зчитування файлу <strong> ${name} </strong></span>`;
+		feedback.innerHTML = msg;
+		//    console.log(reader.error);
+	};
+	//  let link = document.createElement('a');
+	//  link.download = file.name;
+	//  link.href = URL.createObjectURL(file);
+	//  link.click();
+	//  URL.revokeObjectURL(link.href);
+});
+
+function returnFileSize(number) {
+	if(number < 1024) {
+		return number + ' байт';
+	} else if(number >= 1024 && number < 1048576) {
+		return(number / 1024).toFixed(1) + ' кБ';
+	} else if(number >= 1048576) {
+		return(number / 1048576).toFixed(1) + ' МБ';
+	}
+}
+</script>
+
+</html>

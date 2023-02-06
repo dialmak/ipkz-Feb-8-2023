@@ -1,0 +1,137 @@
+/**
+    Note that all these styles are just examplatory.
+**/
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 2em auto;
+  max-width: 70em;
+  color: #2b2b2b;
+  background: #fafafa;
+}
+body * {
+  box-sizing: border-box;
+}
+
+h2,h3,h4 {
+  margin: 0.5em 0 0.5em;
+}
+p {
+  font-size: 1.125em;
+  margin: 0 0 0.5em;
+}
+p + p {
+  margin-top: 1.5em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu {
+    vertical-align:center;
+}
+
+.btn {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 32px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: Blue;
+}
+
+.button_download {
+  font-size: 1.25em;
+  line-height: 1;
+  text-transform: uppercase;
+  position: relative;
+  border: 0.05em solid;
+  padding: 0.3em 0.3em 0.15em;
+  color: rebeccapurple;
+  background: transparent;
+  border-radius: 0.3em;
+  transition: background 0.3s;
+  margin: 0.15em;
+}
+.button_download:hover,
+.button_download:focus {
+  color: white;
+  background: rebeccapurple;
+  border-color: rebeccapurple;
+}
+.button_download:active {
+  top: 0.08em;
+}
+
+.button_chart {
+  font-size: 1.25em;
+  line-height: 1;
+  text-transform: uppercase;
+  position: relative;
+  border: 0.05em solid;
+  padding: 0.3em 0.3em 0.15em;
+  color: DarkGreen;
+  background: transparent;
+  border-radius: 0.3em;
+  transition: background 0.3s;
+  margin: 0.15em;
+}
+.button_chart:hover,
+.button_chart:focus {
+  color: white;
+  background: DarkGreen;
+  border-color: DarkGreen;
+}
+.button_chart:active {
+  top: 0.08em;
+}
+
+
+.button_name {
+  font-size: 1.5em;
+  line-height: 1;
+  position: relative;
+    border: 0em solid;
+  /* Сверху | По горизонтали | Снизу */
+  padding: 0.3em 0.3em 0.15em;
+  color: MidnightBlue;
+  background: transparent;
+  border-radius: 0.3em;
+  margin: 0.15em 0.15em 0.15em;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  

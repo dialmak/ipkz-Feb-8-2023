@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Вибір файла" />
+	<meta name="author" content="Ostapchuk Viktor" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Графік ІПКЗ</title>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link href="style1.css" rel="stylesheet" />
+	<style>
+  
+html,body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+  text-align: center;
+}  
+  
+.btn {
+  border: 2px solid black;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  padding: 6px 10px;
+  font-size: 10px;
+  cursor: pointer;
+  margin: 3px;
+}
+
+/* Green */
+.success {
+  border-color: #04AA6D;
+  color: green;
+}
+
+.success:hover {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Blue */
+.info {
+  border-color: #2196F3;
+  color: dodgerblue
+}
+
+.info:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.warning {
+  border-color: #ff9800;
+  color: orange;
+}
+
+.warning:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.danger {
+  border-color: #f44336;
+  color: red
+}
+
+.danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Gray */
+.default {
+  border-color: #e7e7e7;
+  color: black;
+  background: #e7e7e7;
+  cursor: unset;
+}
+
+.default:hover {
+  cursor: unset;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type:  none;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+</style>
+<script>
+  var arr = ["7_01.2023.csv", "7_02.2023.csv", "7_03.2023.csv"];
+  function createList(items, parent){
+  var ul = document.createElement('ul');
+  parent.appendChild(ul);
+  items.forEach(function generateList(item) {
+    var li = document.createElement('li');
+    ul.appendChild(li);
+    if(Array.isArray(item)){
+      createList(item, li);
+    } else {
+      let index = item.indexOf('_');
+      let it = item.slice(index + 1);
+      it = it.replaceAll('_', '.');
+      it = it.replaceAll('.csv', '');
+	    li.innerHTML =`<button class="btn default">` + it + `</button>
+      <a href="./files/` + item + `" download><button class="btn success">Завантажити файл</button></a>
+      <a href="./chart.html?` + item + `" target="_blank"><button class="btn info">Побудувати графік</button></a>`;
+    }
+  });
+}
+
+  function returnFileSize(number) {
+  	if(number < 1024) {
+  		return number + ' байт';
+  	} else if(number >= 1024 && number < 1048576) {
+  		return(number / 1024).toFixed(1) + ' кБ';
+  	} else if(number >= 1048576) {
+  		return(number / 1048576).toFixed(1) + ' МБ';
+  	}
+  }
+
+  window.addEventListener("load", function() {
+    var list = document.getElementById('list');
+    createList(arr, list);
+  });
+
+	//  let link = document.createElement('a');
+	//  link.download = file.name;
+	//  link.href = URL.createObjectURL(file);
+	//  link.click();
+	//  URL.revokeObjectURL(link.href);
+
+</script>
+</head>
+<body>
+    <div class="content">
+      <img src="logo2.svg" height="30px" alt="ТЕХНОТЕК" />
+      <h3>Реєстратор ІПКЗ-1200-50, серійний номер 0007. <br /> Виберіть період дати та завантажте дані або побудуйте графіки для перегляду даних. </h3>
+      <ul class="menu" id="myList"></ul>
+    </div>
+    <script>
+      let data = ["7_01.2022.csv", "7_02.2022.csv", "7_03.2022.csv", "7_04.2022.csv"];
+      let list = document.getElementById("myList");
+      data.forEach((item) => {
+        let li = document.createElement("li");
+        let date = 
+        li.innerHTML = `
+				<button class="button_name">` + item + `</button>` + `
+				<button class="button_download">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+						<path d="M 0.5 10.9 C 0.776 10.9 1 11.124 1 11.4 L 1 13.9 C 1 14.452 1.448 14.9 2 14.9 L 14 14.9 C 14.552 14.9 15 14.452 15 13.9 L 15 11.4 C 15 11.015 15.417 10.775 15.75 10.967 C 15.905 11.056 16 11.221 16 11.4 L 16 13.9 C 16 15.005 15.105 15.9 14 15.9 L 2 15.9 C 0.895 15.9 0 15.005 0 13.9 L 0 11.4 C 0 11.124 0.224 10.9 0.5 10.9 Z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+					</svg>
+				</button>` + `
+				<button class="button_chart">
+					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-graph-down-arrow" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 11.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-1 0v2.6l-3.613-4.417a.5.5 0 0 0-.74-.037L7.06 8.233 3.404 3.206a.5.5 0 0 0-.808.588l4 5.5a.5.5 0 0 0 .758.06l2.609-2.61L13.445 11H10.5a.5.5 0 0 0-.5.5Z"/>
+					</svg>
+				</button>`;
+        list.appendChild(li);
+      });
+    </script>
+</body>
+</html>

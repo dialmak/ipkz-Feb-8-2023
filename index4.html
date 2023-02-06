@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Вибір файла для побудови графіка" />
+	<meta name="author" content="Ostapchuk Viktor" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Графік ІПКЗ</title>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+	<style>
+  
+html,body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+  text-align: center;
+}  
+  
+.btn {
+  border: 2px solid black;
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  padding: 6px 10px;
+  font-size: 10px;
+  cursor: pointer;
+  margin: 3px;
+}
+
+/* Green */
+.success {
+  border-color: #04AA6D;
+  color: green;
+}
+
+.success:hover {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Blue */
+.info {
+  border-color: #2196F3;
+  color: dodgerblue
+}
+
+.info:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.warning {
+  border-color: #ff9800;
+  color: orange;
+}
+
+.warning:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.danger {
+  border-color: #f44336;
+  color: red
+}
+
+.danger:hover {
+  background: #f44336;
+  color: white;
+}
+
+/* Gray */
+.default {
+  border-color: #e7e7e7;
+  color: black;
+  background: #e7e7e7;
+  cursor: unset;
+}
+
+.default:hover {
+  cursor: unset;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type:  none;
+}
+
+</style>
+</head>
+<body>
+
+<h4>Виберіть період часу для завантаження даних або збудуйте графік</h4>
+<!--
+<button class="btn success">Success</button>
+<button class="btn info">Info</button>
+<button class="btn warning">Warning</button>
+<button class="btn danger">Danger</button>
+<button class="btn default">Default</button>
+-->
+  <div id="list">
+  </div>
+</body>
+
+<script>
+  var arr = ["7_01_2023.csv", "7_02_2023.csv", "7_03_2023.csv"];
+  function createList(items, parent){
+  var ul = document.createElement('ul');
+  parent.appendChild(ul);
+  items.forEach(function generateList(item) {
+    var li = document.createElement('li');
+    ul.appendChild(li);
+    if(Array.isArray(item)){
+      createList(item, li);
+    } else {
+      let index = item.indexOf('_');
+      let it = item.slice(index + 1);
+      it = it.replaceAll('_', '.');
+      it = it.replaceAll('.csv', '');
+	    li.innerHTML =`<button class="btn default">` + it + `</button><a href="./files/` + item + `" download><button class="btn success">Загрузити файл</button></a><a href="./chart.html" target="_blank"><button class="btn info">Збудувати графік</button></a>`;
+    }
+  });
+}
+
+var list = document.getElementById('list');
+
+createList(arr, list);
+
+	//  let link = document.createElement('a');
+	//  link.download = file.name;
+	//  link.href = URL.createObjectURL(file);
+	//  link.click();
+	//  URL.revokeObjectURL(link.href);
+
+function returnFileSize(number) {
+	if(number < 1024) {
+		return number + ' байт';
+	} else if(number >= 1024 && number < 1048576) {
+		return(number / 1024).toFixed(1) + ' кБ';
+	} else if(number >= 1048576) {
+		return(number / 1048576).toFixed(1) + ' МБ';
+	}
+}
+</script>
+
+</html>

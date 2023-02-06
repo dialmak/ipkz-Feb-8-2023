@@ -1,0 +1,68 @@
+
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+}
+
+#no-js {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#main-content {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+input.visually-hidden:is(:focus, :focus-within) + label {
+  outline: thin dotted;
+}
+
+#help {
+    display: inline-block;
+    font-size: 10px;
+    font-style: italic;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 3px 20px;
+    cursor: pointer;
+    color: #000;
+    background-color: #fff;
+}
+
+.tooltip {
+  display: block;
+  font-family: monospace, monospace;
+  white-space: pre;
+  font-size: 12px;
+  line-height: 1.2;
+  position: relative;
+}
+
+.highcharts-menu-item {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+  line-height: 0.8;
+}
+
+
+#container {
+    margin: 0 auto
+}
