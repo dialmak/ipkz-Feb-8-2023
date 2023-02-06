@@ -15,8 +15,8 @@ html,body {
   text-align: center;
   box-sizing: border-box;
 }  
-  
-h2,h3,h4,h5 {
+
+h3 {
   margin: 0.5em 0;
 }
 
@@ -27,11 +27,25 @@ h2,h3,h4,h5 {
   color: black;
   padding: 6px 6px;
   font-family: sans-serif;
-  font-size: 0.7em;	
   cursor: pointer;
   margin: 0.25em 0;
 }
 
+@media screen and (min-width: 600px) {
+  button.btn {
+    font-size: 1.0em;	
+  }
+}
+
+@media screen and (max-width: 600px) {
+  button.btn {
+    font-size: 0.7em;	
+  }
+  h3 {
+    font-size: 0.9em;	
+  }
+}
+  
 /* Green */
 .success {
   border-color: #04AA6D;
@@ -138,7 +152,7 @@ function createList(){
 </head>
 <body>
   <img src="logo2.svg" height="30px" alt="ТЕХНОТЕК" />
-  <h5>Реєстратор ІПКЗ-1200-50, серійний номер 0007.<br />Виберіть дату для завантаження даних або побудови графіків.</h5>
+  <h3>Реєстратор ІПКЗ-1200-50, серійний номер 0007.<br />Виберіть дату для завантаження даних або побудови графіків.</h3>
   <!--
   <button class="btn success">Success</button>
   <button class="btn info">Info</button>
