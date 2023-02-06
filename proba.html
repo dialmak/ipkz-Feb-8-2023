@@ -17,15 +17,15 @@
       <ul class="menu" id="myList"></ul>
     </div>
     <script>
-      let data = ["7_01.2022.csv", "7_02.2022.csv", "7_03.2022.csv", "7_08.2022.csv"];
+      let data = ["7_01.2022.csv", "7_02.2022.csv", "7_03.2022.csv", "7_09.2022.csv"];
       let list = document.getElementById("myList");
       data.forEach((item) => {
         let li = document.createElement("li");
-        let index = item.indexOf('_');
-        let date = item.slice(index + 1);
-//        date = date.replace('.csv', '');
+        let myIndex = item.indexOf("_");
+        let myDate = item.slice(myIndex + 1);
+//        myDate = date.replace(".csv", " ");
         li.innerHTML = `
-				<button class="button_name">` + date + `</button>` + `
+				<button class="button_name">` + myDate + `</button>` + `
 				<button class="button_download">
 					<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
 						<path d="M 0.5 10.9 C 0.776 10.9 1 11.124 1 11.4 L 1 13.9 C 1 14.452 1.448 14.9 2 14.9 L 14 14.9 C 14.552 14.9 15 14.452 15 13.9 L 15 11.4 C 15 11.015 15.417 10.775 15.75 10.967 C 15.905 11.056 16 11.221 16 11.4 L 16 13.9 C 16 15.005 15.105 15.9 14 15.9 L 2 15.9 C 0.895 15.9 0 15.005 0 13.9 L 0 11.4 C 0 11.124 0.224 10.9 0.5 10.9 Z"/>
